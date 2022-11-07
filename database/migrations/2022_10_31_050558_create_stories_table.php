@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->cascadeOnDelete();
             $table->string('title')->nullable();
             $table->string('slug')->unique();
-            $table->string('content')->nullable();
+            $table->text('content')->nullable();
             $table->string('image')->nullable();
             $table->dateTime('publish_date')->nullable();
             $table->enum('status', [1, 2, 3])->default(2)->comments = "Active => 1, Inactive => 2, Archived => 3";

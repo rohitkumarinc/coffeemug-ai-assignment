@@ -15,6 +15,15 @@
         @vite(['resources/css/app.css', 'resources/css/bootstrap.css', 'resources/js/app.js'])
         <!-- Styles -->
         @livewireStyles
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+        <style>
+        .ck-editor__editable_inline {
+            min-height: 280px;
+        }
+        </style>
+
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -40,5 +49,39 @@
         @stack('modals')
 
         @livewireScripts
+        <script src="{{ asset('plugin/ckeditor5/ckeditor.js') }}"></script>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+        <script type="text/javascript">
+            // allEditors
+            var allEditors = document.querySelectorAll('.crud-richtext');
+            for (var i = 0; i < allEditors.length; ++i) {
+                ClassicEditor
+                .create(allEditors[i], {
+                    ckfinder: {
+                        uploadUrl: '{{route('ck_editor_image_upload', ['_token' => csrf_token() ])}}'
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            }
+            // allEditors
+
+            // daterangepicker
+            $('.daterangepicker-input').daterangepicker({
+                singleDatePicker: true,
+                timePicker: true,
+                timePicker24Hour: true,
+                // startDate: moment().add(10, 'days'),
+                locale: {
+                    format: 'YYYY-MM-DD HH:mm:00'
+                }
+            });
+            // daterangepicker
+        </script>
     </body>
 </html>

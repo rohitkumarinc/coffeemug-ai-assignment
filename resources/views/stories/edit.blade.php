@@ -1,16 +1,11 @@
-@extends('layouts.backend')
-
-@section('content')
+<x-app-layout>
     <div class="container">
         <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-md-12 mt-4 mb-4">
                 <div class="card">
-                    <div class="card-header">Edit Intake #{{ $intake->id }}</div>
+                    <div class="card-header">Edit story #{{ $story->id }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/intakes') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">
@@ -20,9 +15,9 @@
                             </ul>
                         @endif
 
-                        {!! Form::model($intake, [
+                        {!! Form::model($story, [
                             'method' => 'PATCH',
-                            'url' => ['/admin/intakes', $intake->id],
+                            'url' => ['/stories', $story->id],
                             'class' => 'form-horizontal',
                             'files' => true
                         ]) !!}
@@ -36,4 +31,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-app-layout>
